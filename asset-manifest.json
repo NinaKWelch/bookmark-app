@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/bookmark-app/static/js/main.14eb2e4c.js",
+    "static/js/787.a89d5dbc.chunk.js": "/bookmark-app/static/js/787.a89d5dbc.chunk.js",
+    "service-worker.js": "/bookmark-app/service-worker.js",
+    "index.html": "/bookmark-app/index.html",
+    "main.14eb2e4c.js.map": "/bookmark-app/static/js/main.14eb2e4c.js.map",
+    "787.a89d5dbc.chunk.js.map": "/bookmark-app/static/js/787.a89d5dbc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.14eb2e4c.js"
+  ]
+}
