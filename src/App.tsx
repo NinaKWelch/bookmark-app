@@ -35,10 +35,7 @@ const App = () => {
         <aside>
           <BookmarkForm />
         </aside>
-        <section>
-          <h2>Bookmark List</h2>
-          <BookmarkList />
-        </section>
+        <BookmarkList />
       </main>
     </div>
   )
