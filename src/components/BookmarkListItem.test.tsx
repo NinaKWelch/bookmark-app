@@ -9,6 +9,6 @@ test('renders bookmark', () => {
 
   render(<BookmarkListItem bookmark={bookmark} />)
 
-  const element = screen.getByText('https://google.com')
-  expect(element).toBeDefined()
+  const url = screen.getByText('https://google.com')
+  expect(url).toBeInTheDocument()
 })
