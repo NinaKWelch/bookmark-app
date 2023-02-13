@@ -11,7 +11,7 @@ const App = () => {
     // update app state with bookmarks from localSorage (if any)
     const fetchBookmarksFromLocalStorage = () => {
       const bookmarks: Bookmark[] = []
-      const keys = Object.keys(localStorage)
+      const keys = Object.keys(localStorage).reverse()
 
       for (let key of keys) {
         if (key.includes('bookmarkapp')) {

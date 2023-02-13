@@ -33,7 +33,7 @@ const BookmarkForm = () => {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
-      </label>
+      </label>{' '}
       <button type="submit">Save</button>
     </form>
   )

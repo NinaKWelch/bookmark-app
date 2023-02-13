@@ -6,27 +6,41 @@ import { Bookmark } from '../types'
 import BookmarkListItem from './BookmarkListItem'
 
 const BookmarkList = () => {
-  const [{ bookmarks }] = useStateValue()
-  const [itemsPerPage, setItemsPerPage] = useState<number>(2)
+  const [{ bookmarks }, dispatch] = useStateValue()
+  const [itemsPerPage, setItemsPerPage] = useState<number>(20)
   const [itemOffset, setItemOffset] = useState<number>(0)
 
-  const listLength: number = Object.keys(bookmarks).length
-  const pageCount: number = Math.ceil(listLength / itemsPerPage)
+  const listLength = Object.keys(bookmarks).length
+  const pageCount = Math.ceil(listLength / itemsPerPage)
 
   const handlePagination = (e: any) => {
     const newItemOffset = (e.selected * itemsPerPage) % listLength
     setItemOffset(newItemOffset)
   }
 
+  const deleteAll = () => {
+    const keys = Object.keys(localStorage)
+
+    for (let key of keys) {
+      if (key.includes('bookmarkapp')) {
+        localStorage.removeItem(key)
+      }
+    }
+
+    dispatch({ type: 'DELETE_ALL_BOOKMARKS' })
+  }
+
+  const handleItemsPerPage = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    setItemsPerPage(Number(e.target.value))
+
   if (listLength === 0) {
     return <p>No bookmarks added yet!</p>
   }
 
-  //const handleItemsPerPage = (num: number) => setItemsPerPage(num)
-
   return (
     <section>
       <h2>Bookmark List</h2>
+      <button onClick={deleteAll}>Clear all</button>
       <ul>
         {Object.values(bookmarks)
           ?.filter(
@@ -40,11 +54,22 @@ const BookmarkList = () => {
       <ReactPaginate
         onPageChange={handlePagination}
         pageCount={pageCount}
+        pageRangeDisplayed={4}
         breakLabel="..."
         previousLabel="< prev"
         nextLabel="next >"
         renderOnZeroPageCount={undefined}
       />
+      <form>
+        <label>
+          Bookmarks per page:{' '}
+          <select onChange={handleItemsPerPage}>
+            <option value="20">20</option>
+            <option value="40">40</option>
+            <option value={listLength}>All</option>
+          </select>
+        </label>
+      </form>
     </section>
   )
 }

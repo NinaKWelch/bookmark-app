@@ -13,6 +13,13 @@ export type Action =
       type: 'ADD_BOOKMARK'
       payload: Bookmark
     }
+  | {
+      type: 'DELETE_ALL_BOOKMARKS'
+    }
+  | {
+      type: 'DELETE_BOOKMARK'
+      payload: string
+    }
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -35,6 +42,19 @@ export const reducer = (state: State, action: Action): State => {
           [action.payload.id]: action.payload,
         },
       }
+    case 'DELETE_ALL_BOOKMARKS':
+      return {
+        ...state,
+        bookmarks: {},
+      }
+    case 'DELETE_BOOKMARK':
+      const updatedBookmarks = { ...state.bookmarks }
+      delete updatedBookmarks[action.payload]
+
+      return {
+        ...state,
+        bookmarks: updatedBookmarks,
+      }
     default:
       return state
   }
@@ -50,6 +70,19 @@ export const setBookmarkList = (payload: Bookmark[]): Action => {
 export const addBookmark = (payload: Bookmark): Action => {
   return {
     type: 'ADD_BOOKMARK',
+    payload,
+  }
+}
+
+export const deleteBookmarks = (): Action => {
+  return {
+    type: 'DELETE_ALL_BOOKMARKS',
+  }
+}
+
+export const deleteBookmark = (payload: string): Action => {
+  return {
+    type: 'DELETE_BOOKMARK',
     payload,
   }
 }
