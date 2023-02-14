@@ -40,7 +40,7 @@ const BookmarkForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Bookmark:{' '}
+        Bookmark Url:{' '}
         <input
           type="url"
           name={url}
