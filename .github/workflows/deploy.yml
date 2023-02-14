@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  SCRAPE_API_KEY: ${{ secrets.SCRAPE_API_KEY }}
+  SCRAPE_API_KEY: ${{ secrets.REACT_APP_SCRAPE_API_KEY }}
 
 jobs:
   build-and-deploy:
