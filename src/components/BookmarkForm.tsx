@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { fetchBookmarkData } from '../services'
 import { useStateValue } from '../state'
 import { Bookmark } from '../types'
-import { isValidUrl } from '../utils'
+import { isValidUrl, isExistingURL } from '../utils'
 
 const BookmarkForm = () => {
   const [{ bookmarks }, dispatch] = useStateValue()
@@ -10,7 +9,7 @@ const BookmarkForm = () => {
 
   const addBookmark = async (url: string) => {
     try {
-      const newBookmark: Bookmark | null = await fetchBookmarkData(url)
+      const newBookmark: Bookmark | false = await isExistingURL(url)
 
       if (newBookmark) {
         // update app state and save new bookmark to localSorage
@@ -19,10 +18,10 @@ const BookmarkForm = () => {
 
         setUrl('')
       } else {
-        console.log('NONEXISTENT URL')
+        throw new Error('NONEXISTENT URL')
       }
     } catch (error) {
-      console.log('addBookmark error:', error)
+      throw new Error('FETCH ERROR')
     }
   }
 
@@ -31,9 +30,13 @@ const BookmarkForm = () => {
 
     // prevent the same bookmark form being added twice
     if (Object.values(bookmarks).find((bookmark) => bookmark.url === url)) {
-      console.log('ALREADY ADDED')
+      throw new Error('ALREADY ADDED')
     } else {
-      isValidUrl(url) ? addBookmark(url) : console.log('INVALID URL')
+      if (isValidUrl(url)) {
+        addBookmark(url)
+      } else {
+        throw new Error('INVALID URL')
+      }
     }
   }
 

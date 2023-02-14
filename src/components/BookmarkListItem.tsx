@@ -16,7 +16,7 @@ const BookmarkListItem = ({ bookmark }: BookmarkListItemProps) => {
   return (
     <li>
       <a href={bookmark.url} target="_blank" rel="noreferrer">
-        {bookmark.url}
+        <img src={bookmark.faviconLink} alt="logo" /> {bookmark.url}
       </a>{' '}
       <button onClick={handleDelete}>Delete</button>
     </li>
