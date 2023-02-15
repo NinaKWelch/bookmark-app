@@ -40,8 +40,8 @@ const BookmarkList = () => {
   return (
     <section>
       <h2>Bookmark List</h2>
-      <button onClick={deleteAll}>Clear all</button>
-      <ul>
+      <button onClick={deleteAll}>clear all</button>
+      <ul id="bookmark-list">
         {Object.values(bookmarks)
           ?.filter(
             (bookmark: Bookmark, index: number) =>

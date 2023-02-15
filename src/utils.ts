@@ -14,12 +14,12 @@ export const isExistingURL = async (url: string) => {
 
       // if url exists, create new bookmark with an unique id
       return { id: 'bookmarkapp-' + uuidv4(), url, faviconLink }
-    } else {
-      return false
     }
   } catch (error) {
     return false
   }
+
+  return false
 }
 
 // validation checks whether URL follows proper URL syntax
@@ -33,5 +33,8 @@ export const isValidUrl = (url: string) => {
     return false
   }
 
-  return givenURL.protocol === 'http:' || givenURL.protocol === 'https:'
+  return (
+    givenURL.protocol === 'http:' ||
+    (givenURL.protocol === 'https:' && url.includes(givenURL.origin))
+  )
 }

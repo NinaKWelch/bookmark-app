@@ -17,11 +17,9 @@ const BookmarkForm = () => {
         localStorage.setItem(newBookmark.id, JSON.stringify(newBookmark))
 
         setUrl('')
-      } else {
-        throw new Error('NONEXISTENT URL')
       }
     } catch (error) {
-      throw new Error('FETCH ERROR')
+      throw new Error('NONEXISTENT URL')
     }
   }
 
@@ -52,7 +50,9 @@ const BookmarkForm = () => {
           placeholder="https://example.com"
         />
       </label>{' '}
-      <button type="submit">Save</button>
+      <button type="submit" disabled={!url}>
+        save
+      </button>
     </form>
   )
 }
