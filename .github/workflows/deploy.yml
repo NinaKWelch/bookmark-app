@@ -7,7 +7,7 @@ on:
     branches: ['main']
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,17 +22,12 @@ jobs:
         run: npm run build
       - name: Test
         run: npm run test
-      - name: E2E tests
+      - name: Test e2e
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
           start: npm run start
           wait-on: http://localhost:3000
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
