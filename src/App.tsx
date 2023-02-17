@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useStateValue } from './state'
 import { Bookmark } from './types'
-import BookmarkForm from './components/BookmarkForm'
-import BookmarkList from './components/BookmarkList'
+import { Container } from '@mui/material'
+import AppHeader from './components/AppHeader'
+import AppContent from './components/AppContent'
 
 const App = () => {
   const [, dispatch] = useStateValue()
@@ -27,17 +28,10 @@ const App = () => {
   }, [dispatch])
 
   return (
-    <div>
-      <header>
-        <h1>Bookmark App</h1>
-      </header>
-      <main>
-        <aside>
-          <BookmarkForm />
-        </aside>
-        <BookmarkList />
-      </main>
-    </div>
+    <Container disableGutters sx={{ height: '100vh' }}>
+      <AppHeader />
+      <AppContent />
+    </Container>
   )
 }
 

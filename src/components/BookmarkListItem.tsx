@@ -1,5 +1,14 @@
 import { useStateValue } from '../state'
 import { Bookmark } from '../types'
+import {
+  ListItem,
+  ListItemButton,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+  IconButton,
+} from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear'
 
 interface BookmarkListItemProps {
   bookmark: Bookmark
@@ -14,12 +23,46 @@ const BookmarkListItem = ({ bookmark }: BookmarkListItemProps) => {
   }
 
   return (
-    <li>
-      <a href={bookmark.url} target="_blank" rel="noreferrer">
-        <img src={bookmark.faviconLink} alt="logo" /> {bookmark.url}
-      </a>{' '}
-      <button onClick={handleDelete}>delete</button>
-    </li>
+    <ListItem
+      disablePadding
+      secondaryAction={
+        <IconButton
+          id="delete-button"
+          edge="end"
+          aria-label="delete"
+          onClick={handleDelete}
+          sx={[
+            {
+              '&:hover': {
+                color: 'error.main',
+              },
+            },
+          ]}
+        >
+          <ClearIcon />
+        </IconButton>
+      }
+    >
+      <ListItemButton
+        dense
+        component="a"
+        href={bookmark.url}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <ListItemAvatar>
+          <Avatar sx={{ backgroundColor: 'white' }}>
+            <img
+              src={bookmark.faviconLink}
+              alt="Bookmark favicon"
+              width="16"
+              height="16"
+            />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={bookmark.url} />
+      </ListItemButton>
+    </ListItem>
   )
 }
 

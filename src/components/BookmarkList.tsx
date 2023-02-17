@@ -1,20 +1,23 @@
 import { useState } from 'react'
-import './BookmarkList.css'
-import ReactPaginate from 'react-paginate'
 import { useStateValue } from '../state'
 import { Bookmark } from '../types'
+import { Grid, Typography, List } from '@mui/material'
+import BookmarkListOptions from './BookmarkListOptions'
 import BookmarkListItem from './BookmarkListItem'
+import BookmarkListNavigation from './BookmarkListNavigation'
+import AppSettings from './AppSettings'
 
 const BookmarkList = () => {
   const [{ bookmarks }, dispatch] = useStateValue()
   const [itemsPerPage, setItemsPerPage] = useState<number>(20)
   const [itemOffset, setItemOffset] = useState<number>(0)
+  const [open, setOpen] = useState<boolean>(false)
 
   const listLength = Object.keys(bookmarks).length
   const pageCount = Math.ceil(listLength / itemsPerPage)
 
-  const handlePagination = (e: any) => {
-    const newItemOffset = (e.selected * itemsPerPage) % listLength
+  const handlePagination = (selected: number) => {
+    const newItemOffset = (selected * itemsPerPage) % listLength
     setItemOffset(newItemOffset)
   }
 
@@ -30,47 +33,52 @@ const BookmarkList = () => {
     dispatch({ type: 'DELETE_ALL_BOOKMARKS' })
   }
 
-  const handleItemsPerPage = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    setItemsPerPage(Number(e.target.value))
-
   if (listLength === 0) {
     return <p>No bookmarks added yet!</p>
   }
 
   return (
-    <section>
-      <h2>Bookmark List</h2>
-      <button onClick={deleteAll}>clear all</button>
-      <ul id="bookmark-list">
-        {Object.values(bookmarks)
-          ?.filter(
-            (bookmark: Bookmark, index: number) =>
-              index >= itemOffset && index < itemOffset + itemsPerPage
-          )
-          .map((bookmark: Bookmark) => (
-            <BookmarkListItem key={bookmark.id} bookmark={bookmark} />
-          ))}
-      </ul>
-      <ReactPaginate
-        onPageChange={handlePagination}
+    <>
+      <Grid
+        container
+        component="section"
+        alignContent="space-between"
+        justifyContent="space-between"
+      >
+        <Typography component="h2" variant="h5" color="primary">
+          Bookmarks
+        </Typography>
+        <BookmarkListOptions
+          handleOpen={() => setOpen(true)}
+          handleDeleteAll={deleteAll}
+        />
+        <Grid item xs={12}>
+          <List dense id="bookmark-list">
+            {Object.values(bookmarks)
+              ?.filter(
+                (bookmark: Bookmark, index: number) =>
+                  index >= itemOffset && index < itemOffset + itemsPerPage
+              )
+              .map((bookmark: Bookmark) => (
+                <BookmarkListItem key={bookmark.id} bookmark={bookmark} />
+              ))}
+          </List>
+        </Grid>
+        {open && (
+          <AppSettings
+            open={open}
+            handleClose={() => setOpen(false)}
+            itemsPerPage={itemsPerPage}
+            handleItemsPerPage={setItemsPerPage}
+            listLength={listLength}
+          />
+        )}
+      </Grid>
+      <BookmarkListNavigation
         pageCount={pageCount}
-        pageRangeDisplayed={4}
-        breakLabel="..."
-        previousLabel="< prev"
-        nextLabel="next >"
-        renderOnZeroPageCount={undefined}
+        handlePagination={handlePagination}
       />
-      <form>
-        <label>
-          Bookmarks per page:{' '}
-          <select onChange={handleItemsPerPage}>
-            <option value="20">20</option>
-            <option value="40">40</option>
-            <option value={listLength}>All</option>
-          </select>
-        </label>
-      </form>
-    </section>
+    </>
   )
 }
 
