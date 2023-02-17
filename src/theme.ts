@@ -17,6 +17,9 @@ const theme = createTheme({
       default: '#EEEEEE',
       paper: '#EEEEEE',
     },
+    error: {
+      main: '#DF4E01',
+    },
   },
 })
 

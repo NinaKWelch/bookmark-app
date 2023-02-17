@@ -4,7 +4,7 @@ import BookmarkList from './BookmarkList'
 
 const AppContent = () => (
   <Container component="main" maxWidth="sm">
-    <Box component="aside" sx={{ mb: 4 }}>
+    <Box component="aside" sx={{ mb: 3 }}>
       <BookmarkForm />
     </Box>
     <BookmarkList />

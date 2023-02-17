@@ -1,7 +1,12 @@
 /* Styles for ReactPaginate */
 
+ul[role='navigation'] {
+  padding-inline-start: 0;
+}
+
 ul[role='navigation'] li {
   display: inline-block;
+
   padding: 0 5px;
   cursor: pointer;
 }

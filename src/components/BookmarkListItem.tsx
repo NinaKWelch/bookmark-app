@@ -27,8 +27,8 @@ const BookmarkListItem = ({ bookmark }: BookmarkListItemProps) => {
       disablePadding
       secondaryAction={
         <IconButton
-          id="delete-button"
           edge="end"
+          id="delete-button"
           aria-label="delete"
           onClick={handleDelete}
           sx={[
@@ -49,6 +49,13 @@ const BookmarkListItem = ({ bookmark }: BookmarkListItemProps) => {
         href={bookmark.url}
         target="_blank"
         rel="noreferrer"
+        sx={[
+          {
+            '&:hover': {
+              color: 'primary.dark',
+            },
+          },
+        ]}
       >
         <ListItemAvatar>
           <Avatar sx={{ backgroundColor: 'white' }}>
