@@ -34,7 +34,11 @@ const BookmarkList = () => {
   }
 
   if (listLength === 0) {
-    return <p>No bookmarks added yet!</p>
+    return (
+      <Typography component="p" variant="body1" color="primary.main">
+        No bookmarks added yet!
+      </Typography>
+    )
   }
 
   return (
