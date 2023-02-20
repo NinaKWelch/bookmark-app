@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/bookmark-app/static/css/main.b401af43.css",
-    "main.js": "/bookmark-app/static/js/main.df0b9a7f.js",
+    "main.css": "/bookmark-app/static/css/main.bdfdcf9a.css",
+    "main.js": "/bookmark-app/static/js/main.d139db66.js",
     "static/js/787.a89d5dbc.chunk.js": "/bookmark-app/static/js/787.a89d5dbc.chunk.js",
     "service-worker.js": "/bookmark-app/service-worker.js",
     "index.html": "/bookmark-app/index.html",
-    "main.b401af43.css.map": "/bookmark-app/static/css/main.b401af43.css.map",
-    "main.df0b9a7f.js.map": "/bookmark-app/static/js/main.df0b9a7f.js.map",
+    "main.bdfdcf9a.css.map": "/bookmark-app/static/css/main.bdfdcf9a.css.map",
+    "main.d139db66.js.map": "/bookmark-app/static/js/main.d139db66.js.map",
     "787.a89d5dbc.chunk.js.map": "/bookmark-app/static/js/787.a89d5dbc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b401af43.css",
-    "static/js/main.df0b9a7f.js"
+    "static/css/main.bdfdcf9a.css",
+    "static/js/main.d139db66.js"
   ]
 }
