@@ -27,10 +27,9 @@ const BookmarkListItem = ({ bookmark }: BookmarkListItemProps) => {
       disablePadding
       secondaryAction={
         <IconButton
-          edge="end"
-          id="delete-button"
           aria-label="delete"
           onClick={handleDelete}
+          edge="end"
           sx={[
             {
               '&:hover': {

@@ -7,5 +7,5 @@ export default defineConfig({
     },
     baseUrl: 'http://localhost:3000',
   },
-  video: false, // disables automatic video recording
+  //video: false, // disables automatic video recording
 })

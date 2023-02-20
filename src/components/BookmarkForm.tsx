@@ -66,28 +66,33 @@ const BookmarkForm = () => {
     >
       {({ submitForm, values, isSubmitting }) => (
         <Grid container component={Form} alignItems="flex-start">
-          <Field
-            component={TextField}
-            required
-            name="url"
-            type="url"
-            label="Add Bookmark Url"
-            sx={{ flexGrow: 1 }}
-          />
-          <Button
-            id="save-button"
-            variant="contained"
-            type="submit"
-            onClick={submitForm}
-            disabled={!values.url || isSubmitting}
-            sx={{ ml: 1, py: 2 }}
-          >
-            save
-          </Button>
+          <Grid item xs={9} sm={10}>
+            <Field
+              component={TextField}
+              required
+              name="url"
+              type="url"
+              label="Add Bookmark Url"
+              sx={{ width: '98%' }}
+            />
+          </Grid>
+          <Grid item xs={3} sm={2}>
+            <Button
+              id="save-button"
+              variant="contained"
+              type="submit"
+              onClick={submitForm}
+              disabled={!values.url || isSubmitting}
+              sx={{ py: 2 }}
+              fullWidth
+            >
+              save
+            </Button>
+          </Grid>
           {saveError && (
             <Grid
               item
-              sm={12}
+              xs={12}
               component={Typography}
               sx={{ pl: '.8rem', color: 'secondary.dark', fontSize: 13 }}
             >

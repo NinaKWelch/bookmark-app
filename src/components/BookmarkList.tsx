@@ -46,8 +46,8 @@ const BookmarkList = () => {
       <Grid
         container
         component="section"
-        alignContent="space-between"
         justifyContent="space-between"
+        alignItems="center"
       >
         <Typography component="h2" variant="h5" color="primary">
           Bookmarks

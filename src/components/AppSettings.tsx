@@ -38,27 +38,33 @@ const AppSettings = ({
       <DialogTitle>App Settings</DialogTitle>
       <DialogContent>
         <Grid container alignItems="center">
-          <DialogContentText sx={{ mr: 3 }}>
-            Bookmarks per page:
-          </DialogContentText>
-          <FormControl>
-            <InputLabel htmlFor="my-input" sx={visuallyHidden}>
-              Items per page
-            </InputLabel>
-            <Select
-              id="items-per-page"
-              value={itemsPerPage.toString()}
-              onChange={handleChange}
-            >
-              <MenuItem value={20}>20</MenuItem>
-              <MenuItem value={40}>40</MenuItem>
-              <MenuItem value={listLength}>All</MenuItem>
-            </Select>
-          </FormControl>
+          <Grid item xs={8}>
+            <DialogContentText sx={{ mr: 3 }}>
+              Bookmarks per page:
+            </DialogContentText>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl>
+              <InputLabel htmlFor="my-input" sx={visuallyHidden}>
+                Items per page
+              </InputLabel>
+              <Select
+                id="items-per-page"
+                value={itemsPerPage.toString()}
+                onChange={handleChange}
+              >
+                <MenuItem value={20}>20</MenuItem>
+                <MenuItem value={40}>40</MenuItem>
+                <MenuItem value={listLength}>All</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>close</Button>
+        <Button color="inherit" onClick={handleClose}>
+          close
+        </Button>
       </DialogActions>
     </Dialog>
   )

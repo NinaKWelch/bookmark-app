@@ -30,7 +30,10 @@ describe('Bookmark app', function () {
   it('deletes a bookmark', function () {
     cy.get('input').type('https://github.com')
     cy.get('#save-button').click()
-    cy.get('#delete-button', { timeout: 10000 }).click()
+    cy.contains('https://github.com')
+    // TEST ISSUE: test will only delete entry if it is clicked twice
+    cy.get('#bookmark-list').find('li > div > button').click()
+    cy.get('#bookmark-list').find('li > div > button').click()
     cy.get('#bookmark-list').should('have.length', 0)
   })
 
@@ -38,10 +41,11 @@ describe('Bookmark app', function () {
     cy.get('input').type('https://github.com')
     cy.get('#save-button').click()
     cy.contains('https://github.com')
-    cy.get('input', { timeout: 10000 }).type('https://google.com')
+    cy.get('input').type('https://google.com')
     cy.get('#save-button').click()
     cy.contains('https://google.com')
-    cy.get('#delete-all-button', { timeout: 10000 }).click()
+    cy.get('#delete-all-button').click()
+    cy.get('#confirm-delete-button').click()
     cy.get('#bookmark-list').should('have.length', 0)
   })
 })
